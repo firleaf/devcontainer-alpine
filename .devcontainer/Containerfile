@@ -1,0 +1,21 @@
+FROM alpine:edge
+
+ARG USERNAME=dev
+ARG UID=1000
+ARG GID=$UID
+
+RUN apk add \
+    git \
+    gpg \
+    openssh \
+    sudo
+
+RUN adduser -D -u $UID -g $GID $USERNAME \
+    && addgroup $USERNAME wheel \
+    && sed -i 's/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/g' /etc/sudoers
+
+COPY extra-packages /
+RUN apk add $(cat /extra-packages)
+RUN rm /extra-packages
+
+USER $USERNAME
