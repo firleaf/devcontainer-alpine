@@ -18,4 +18,13 @@ COPY extra-packages /
 RUN apk add $(cat /extra-packages)
 RUN rm /extra-packages
 
+COPY extra-setup /
+RUN chmod o+x /extra-setup
+RUN . /extra-setup
+
 USER $USERNAME
+
+COPY user-setup /
+RUN sudo chown $USERNAME:$USERNAME /user-setup
+RUN chmod o+x /user-setup 
+RUN . /user-setup
