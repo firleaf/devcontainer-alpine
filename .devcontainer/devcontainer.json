@@ -2,7 +2,12 @@
     "dockerComposeFile": "compose.yaml",
     "service": "devcontainer",
     "workspaceFolder": "/workspace",
-    "postCreateCommand": ". /post-create",
+    "initializeCommand": ". /lifecycle/initialize",
+    "onCreateCommand": ". /lifecycle/create",
+    "updateContentCommand": ". /lifecycle/update-content",
+    "postCreateCommand": ". /lifecycle/post-create",
+    "postStartCommand": ". /lifecycle/post-start",
+    "postAttachCommand": ". /lifecycle/post-attach",
     "customizations": {
       "vscode": {
         "extensions": []
