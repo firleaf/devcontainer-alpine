@@ -14,9 +14,10 @@ RUN adduser -D -u $UID -g $GID $USERNAME \
     && addgroup $USERNAME wheel \
     && sed -i 's/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/g' /etc/sudoers
 
-COPY extra-packages /
+COPY lifecycle /
+COPY post-create /
+
 RUN apk add $(cat /extra-packages)
-RUN rm /extra-packages
 
 COPY extra-setup /
 RUN chmod o+x /extra-setup

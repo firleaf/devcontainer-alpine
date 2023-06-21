@@ -2,6 +2,7 @@
     "dockerComposeFile": "compose.yaml",
     "service": "devcontainer",
     "workspaceFolder": "/workspace",
+    "postCreateCommand": ". /post-create",
     "customizations": {
       "vscode": {
         "extensions": []
